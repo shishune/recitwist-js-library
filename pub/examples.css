@@ -1,0 +1,51 @@
+body, button, p{
+    font-family: "Verdana";
+    font-size: 12;
+}
+
+code{
+    margin: 20px; 
+}
+
+li{
+    padding: 5px;
+    margin: 10px;
+    line-height: 2;
+}
+
+
+#recipe1{
+    display: block;
+}
+
+.note{
+    background-color: rgba(200, 255, 247, 0.861);
+    border-radius: 0.5em;
+    color: rgb(56, 56, 56);
+    margin: 10px;
+    width: 70vw;
+    padding: 5px 20px;
+}
+
+.codeButton{
+    font-size: 20px;
+    padding: 0.7em; 
+    width: 10em;
+    background-color: rgb(0, 181, 181);
+    color: white;
+    border: none; 
+    border-radius:  0.5em;
+    margin:  1em;
+    cursor: pointer;
+}
+
+.codeblockExample{
+    background-color: rgb(0, 88, 88);
+    color: rgb(255, 255, 255); 
+    padding: 0.5em 1.5em; 
+    overflow: auto;
+    width: 70vw;
+    max-height: 20em;
+    margin: 20px 10px;
+    border-radius: 10px;
+}

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css"> 
+    <title>Documentation</title>
+  </head>
+  <body>
+    <div id="header">
+        <div class="left">
+            <span class="headerTitle"><h1>ReciTwist.js</h1></span>
+
+        </div>
+        <div class="right">
+            <button onclick="location.href = 'https\://recitwist-library.herokuapp.com';"  class="headerButton" >Home</button>
+            <button onclick="location.href = 'https\://recitwist-library.herokuapp.com/documentation.html';"  class="headerButton" >Documentation</button>
+            <button onclick="location.href = 'https\://recitwist-library.herokuapp.com/examples.html';"  class="headerButton" >Examples</button>
+        </div>        
+    </div>
+    <div id="getting-started" class="section level2">
+      <h2>Getting Started</h2>
+      <div id="to-get-started-include" class="section level3">
+        <h3>To get started, include:</h3>
+        <ul>
+          <li>
+            <a href="https://recitwist-library.herokuapp.com/recitwist.js"
+              >this ReciTwist javascript file</a
+            >
+          </li>
+          <li>
+            <a href="https://recitwist-library.herokuapp.com/recitwist.css"
+              >this ReciTwist css file</a
+            >
+          </li>
+          <li>
+            this script to call the recitwist javascript file in your html:
+          </li>
+        </ul>
+        <div class="codeblock">   
+        <pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;recitwist.css&quot;&gt; 
+&lt;script defer type=&quot;text/javascript&quot; src=&#39;recitwist.js&#39;&gt;&lt;/script&gt; </code></pre></div>
+        <ul>
+          <li>There are no external modules needed for this library</li>
+        </ul>
+      </div>
+      <div
+        id="here-is-how-to-demonstrate-some-basic-functionality"
+        class="section level3"      >
+        <h3>Here is how to demonstrate some basic functionality:</h3>
+        <div
+          id="first-we-will-create-an-ingredient-list"
+          class="section level4"        >
+          <h4>First we will create an Ingredient List</h4>
+          <div class="codeblock">
+            <pre><code>
+const ingredientsList = new IngredientList(&quot;.IngredientsList&quot;, &quot;Ingredients&quot;); 
+
+// This creates an ingredients list with a title of &quot;Ingredients&quot; that will go into any div with the &quot;IngredientsList&quot; classname. 
+
+// Next we will add ingredients to this list 
+ingredientsList.addIngredient(&quot;2 teaspoons Kosher salt&quot;)
+ingredientsList.addIngredient(&quot;1 teaspoon Sugar &quot;)
+ingredientsList.addIngredient(&quot;1 pound (1-inch-thick) Bone-in pork rib chops&quot;, 
+                                [&quot;Pork shoulder steak&quot;, 
+                                &quot;Boneless, skinless chicken thighs&quot;, 
+                                &quot;Skirt or flank steak cut into 4-inch sections&quot;])
+// This ingredient has a list of alternative ingredients that are placed as the second parameneter in a list</code></pre>
+        </div>
+        </div>
+        <div
+          id="second-we-will-create-a-set-of-instructions"
+          class="section level4"
+        >
+          <h4>Second we will create a set of Instructions</h4>
+          <div class="codeblock">
+          <pre><code>
+const instructions = new Instructions(&quot;.recipeInstructions&quot;, 
+    {title: &quot;Instructions&quot;, crossout: true,
+    description:&quot;desc: A little bit of sugar mixed into the salt helps these chops brown during their relatively short cook time, 
+    and while they rest, make the wilted greens in the pork drippings.&quot;})
+    // This creates a list of instructions. This instruction list has a title and description, 
+    // and also allows the user to click on each step so that they can cross out each step as they go through the recipe
+
+instructions.addStep({title: &quot;Season meat&quot;, 
+    description: &quot;Mix kosher salt and sugar in a small bowl. Lightly pound the pork chops with a meat mallet, rolling pin, 
+    or the heel of your hand until they&#39;re about 1 inch thick. Pat dry, then season all over with the salt-sugar mixture. 
+    Let chops sit while you prep the radicchio and onion. &quot;, 
+    estimatedTime:3})
+    // This will add a step to the instructions list. Information like title and description can be added. 
+    // Each step also requires an estimated time, which will be used in the timeline. If this is not given, it defaults to 0. 
+    
+    
+instructions.addStep({title: &quot;Cook meat&quot;,
+    description: &quot;Press down to ensure that the center of each chop is making good contact with the hot oil and the pan. 
+    Cook, turning every minute, until the chops are very well browned with some charred spots on the fattiest areas, 5 to 6 minutes total. 
+    They will still be a little pink—if you like yours well-done, add another 1 or 2 minutes of cooking time. Transfer to a large plate to rest.&quot;, 
+    estimatedTime:6})
+        </code></pre>
+        </div>
+        </div>
+        <div
+          id="finally-we-will-create-a-timeline-for-those-instructions"
+          class="section level4"
+        >
+          <h4>Finally, we will create a timeline for those instructions</h4>
+          <div class="codeblock"><pre><code>instructions.addTimeline(&quot;.timeline&quot;, {width: &quot;1000px&quot;, height:&quot;30px&quot;})
+// this timeline has a specified height and width, and will be added to divs with the classname &quot;timeline&quot;</code></pre></div>
+          <p>You can view the examples <a href="https://recitwist-library.herokuapp.com/examples.html">here!</a></p>
+        </div>
+      </div>
+    </div>
+    <div id="api-documentation" class="section level2">
+      <h2>API Documentation</h2>
+      <div id="ingredients-list" class="section level3">
+        <h3>Ingredients List</h3>
+        <div class="codeblock"><pre><code>  IngredientList(querySelector, title = &quot;&quot;, list = [])</code></pre></div>
+        <ul>
+          <li>
+            Initialize an Ingredient List:
+            <ul>
+              <li>
+                querySelector: [String] the class or id of div in your HTML that
+                you want to add the ingredient list to
+              </li>
+              <li>
+                title: (optional) [String] title of your Ingredient list that
+                will display at the top
+              </li>
+              <li>
+                list: (optional) [String] the list of ingredient objects that
+                you already have made. This is not encouraged, but possible.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="codeblock"><pre><code>IngredientList.addIngredient(ingredientName, alternatives = [], style={})</code></pre></div>
+        <ul>
+          <li>
+            Add an Ingredient to your Ingredient List:
+            <ul>
+              <li>ingredientName: the name of the ingredient you are adding</li>
+              <li>
+                alternatives: (optional) a list of alternative ingredients users
+                may also use
+              </li>
+              <li>
+                style: (optional) object that has specific ways the developer
+                may style the ingredient
+                <ul>
+                  <li>
+                    style.buttonTextColour: (optional) [String]changes the
+                    button text colour. The default is “black”
+                  </li>
+                  <li>
+                    style.buttonColour: (optional) [String] changes the button
+                    background colour. The default is “transparent”
+                  </li>
+                  <li>
+                    style.borderRadius: (optional) [String] changes the button
+                    border radius. The default is “5px”
+                  </li>
+                  <li>NOTE: These can also be changed in the css</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="codeblock"><pre><code>IngredientList.changeViewAlternativesButtonText(newText)</code></pre></div>
+        <ul>
+          <li>
+            [String] Changes the text of the button that allows users to view
+            the alternative ingredients to newText. Default is “View
+            Alternatives”.
+          </li>
+        </ul>
+        <div class="codeblock"><pre><code>IngredientList.changeHideAlternativesButtonText(newText)</code></pre></div>
+        <ul>
+          <li>
+            [String] Changes the text of the button that allows users to hide
+            the alternative ingredients to newText. Default is “Hide
+            Alternatives”.
+          </li>
+        </ul>
+        <div class="codeblock"><pre><code>IngredientList.changeSwapButtonText(newText)</code></pre></div>
+        <ul>
+          <li>
+            [String] Changes the text of the button that allows users to swap
+            the alternative ingredients when the alternative view is expanded to
+            newText. Default is “Swap”.
+          </li>
+        </ul>
+        <div class="codeblock"><pre><code>IngredientList.changeModalSwapText(newText)</code></pre></div>
+        <ul>
+          <li>
+            [String] Changes the title text inside the alternative ingredients
+            modal to newText. Default is “Swap”.
+          </li>
+        </ul>
+      </div>
+      <div id="ingredient" class="section level3">
+        <h3>Ingredient</h3>
+        <div class="codeblock"><pre><code>Ingredient(name, alternatives = [], text, style)</code></pre></div>
+        <ul>
+          <li>
+            Initialize an ingredient
+            <ul>
+              <li>name: [String] name of the ingredient</li>
+              <li>
+                alternatives: (optional) [list[String]] the names of alternative
+                ingredients
+              </li>
+              <li>
+                text: [Object] of the texts that will appear in the DOM Element
+                representation of an ingredient. Includes
+                <ul>
+                  <li>
+                    text.viewAlternativesText: [String] the text of the button
+                    that allows users to view the alternative ingredients.
+                  </li>
+                  <li>
+                    text.hideAlternativesText: [String] the text of the button
+                    that allows users to hide the alternative ingredients.
+                  </li>
+                  <li>
+                    text.swapText: [String] the text of the button that allows
+                    users to swap the alternative ingredients when the
+                    alternative view is expanded.
+                  </li>
+                  <li>
+                    text.modalSwapText: [String] the title text inside the
+                    alternative ingredients modal.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="codeblock"><pre><code>Ingredient.createElement()</code></pre></div>
+        <ul>
+          <li>
+            Will return a DOM element that includes all of the Ingredient
+            information, along with the alternative ingredients and necessary
+            functions.
+            <ul>
+              <li>Will create a modal for the alternative ingredients</li>
+              <li>Will create a div for the alternative ingredients</li>
+              <li>
+                Will create a button to view/hide the alternative ingredients
+              </li>
+              <li>
+                Will create buttons for each alternative ingredient so that they
+                can be swapped with the original ingredient
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div id="instructions" class="section level3">
+        <h3>Instructions</h3>
+        <div class="codeblock"><pre><code>Instructions(querySelector, instructions)</code></pre></div>
+        <ul>
+          <li>
+            Initializes instructions
+            <ul>
+              <li>
+                querySelector: [String] the class or id of div in your HTML that
+                you want to add the instructions to
+              </li>
+              <li>
+                instructions: object of instruction information. All of these
+                fields are optional
+                <ul>
+                  <li>
+                    instructions.title: [String] title that will appear before
+                    the list of instructions
+                  </li>
+                  <li>
+                    instructions.description: [String] description that will
+                    appear after the title
+                  </li>
+                  <li>
+                    instructions.crossout: [boolean] if true allows the user to
+                    click on each step to cross it out. Note: if used with the
+                    timeline, it will also turn the corresponding time block in
+                    the timeline into a different colour!<br />
+                  </li>
+                  <li>
+                    instructions.stepName: (optional) [String] The word displayed to denote each
+                    step. Default is “Step”
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="codeblock"><pre><code>Instructions.addStep(stepInfo)</code></pre></div>
+        <ul>
+          <li>
+            Adds a step to the instructions
+            <ul>
+              <li>
+                stepInfo: [Object] that includes step information. All of these
+                fields are optional
+                <ul>
+                  <li>
+                    Please view the <a href="#step">Step</a> Documentation for
+                    further details
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="codeblock"> <pre><code>Instructions.addTimeline(querySelector, style)</code></pre></div>
+        <ul>
+          <li>Creates and adds a timeline to the DOM.</li>
+          <li>
+            NOTE: This should be called AFTER all of the steps have been added.
+            <ul>
+              <li>
+                querySelector: [String] the class or id of div in your HTML that
+                you want to add the timeline to
+              </li>
+              <li>
+                style: [Object] of the style of the timeline. Please view the
+                <a href="#timeline">Timeline</a> Documentation for further
+                details
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div id="step" class="section level3">
+        <h3>Step</h3>
+        <div class="codeblock"><pre><code>Step(index, id, step, crossout)</code></pre></div>
+        <ul>
+          <li>
+            Initializes a step
+            <ul>
+              <li>
+                index: [Int] index of the step in relation to the rest of the
+                other steps.
+              </li>
+              <li>
+                id: [String] the id used to refer to the step. This is used in
+                the timeline to link to this step. Typically will follow the
+                format [instruction querySelector]-[step index]
+              </li>
+              <li>
+                step: [Object] of step information
+                <ul>
+                  <li>
+                    step.stepName: [String] What a step will be referred to.
+                    Default is “Step”
+                  </li>
+                  <li>
+                    step.seperator: [String] What is put between the Step name
+                    and the title of the step. Default is &quot; &quot;
+                  </li>
+                  <li>
+                    step.title: [String] The title of the step. Default is
+                    &quot;&quot;
+                  </li>
+                  <li>
+                    step.description: [String] The description of the step.
+                    Default is &quot;&quot;
+                  </li>
+                  <li>
+                    step.estimatedTime: [float] The estimated time it takes to
+                    complete the step. Default is 0
+                  </li>
+                </ul>
+              </li>
+              <li>
+                crossout: [boolean] if true allows the user to click on each
+                step to cross it out. Note: if used with the timeline, it will
+                also turn the corresponding time block in the timeline into a
+                different colour!
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="codeblock"><pre><code>Step.createElement()</code></pre></div>
+        <ul>
+          <li>
+            Will return a DOM element that includes all of the Step information.
+            All the information is wrapped in a section element so that it can
+            be linked to. Each Step Element can be clicked to become crossed out
+          </li>
+        </ul>
+        <div class="codeblock"> <pre><code>Step.addTimeline(timeline)</code></pre></div>
+        <ul>
+          <li>
+            Will add a timeline to this step.
+            <ul>
+              <li>
+                timeline: [Timeline] this links the Step to the timeline so that
+                when it is marked as complete, the timeline will also reflect
+                those changes.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="codeblock"><pre><code>Step.setStepAsComplete()</code></pre></div>
+        <ul>
+          <li>
+            Will set the step as complete and also call the timeline to set the
+            corresponding time block as complete
+          </li>
+        </ul>
+      </div>
+      <div id="timeline" class="section level3">
+        <h3>Timeline</h3>
+        <div class="codeblock"><pre><code>Timeline(querySelector, steps, style={})</code></pre></div>
+        <ul>
+          <li>
+            Initializes a timeline. Note that the blocks within the timeline
+            will be refered to as “time blocks”
+            <ul>
+              <li>
+                querySelector: [String] the class or id of div in your HTML that
+                you want to add the instructions to
+              </li>
+              <li>steps: [List [Step]] Steps to base the timeline off of</li>
+              <li>
+                style: (optioal) Style applied to the timeline
+                <ul>
+                  <li>
+                    style.padding:[String] Padding applied to the div around the
+                    time blocks (ie the timeline padding). Default is “0px 2px”.
+                  </li>
+                  <li>
+                    style.bgColour: [String] Background colour of the div
+                    surrounding the time blocks (ie the timeline background
+                    colour). Default is "white"
+                  </li>
+                  <li>
+                    style.borderRadius:[String] Border radius of the timeline.
+                    Default is “5px”
+                  </li>
+                  <li>
+                    style.height:[String] Height of each time block inside the
+                    timeline. Default is “30px”
+                  </li>
+                  <li>
+                    style.width:[String] Wdith of each time block inside the
+                    timeline. Default is “1000px”
+                  </li>
+                  <li>
+                    style.maxModalWidth:[String] The maximum width of the modal
+                    for each time block. Default is “250px”
+                  </li>
+                  <li>
+                    style.maxModalHeight:[String] The maximum height of the
+                    modal for each time block. Default is “500px”
+                  </li>
+                  <li>
+                    style.inprogressColour:[String] The colour of time blocks
+                    that are in progress. Default is “red”
+                  </li>
+                  <li>
+                    style.completedColour:[String] The colour of time blocks
+                    that are complete. Default is “green”
+                  </li>
+                  <li>
+                    style.border:[String] The border style of the time blocks.
+                    Default is “none”
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="codeblock"><pre><code>Timeline.createTimeline()</code></pre></div>
+        <ul>
+          <li>
+            Will create and return a DOM element with all of the timeline
+            information
+          </li>
+        </ul>
+        <div class="codeblock"><pre><code>Timeline.addTimeline()</code></pre></div>
+        <ul>
+          <li>
+            Will create and add a timeline to the corresponding DOM element
+            according to querySelector
+          </li>
+        </ul>
+        <div class="codeblock"><pre><code>Timeline.setBlockAsComplete(index)</code></pre></div>
+        <ul>
+          <li>
+            Will set the index-th time block as complete (or uncomplete if
+            already complete)
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

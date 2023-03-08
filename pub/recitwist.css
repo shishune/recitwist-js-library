@@ -1,0 +1,54 @@
+.ingredientList{
+    margin: 20px;
+}
+
+.ingredient{
+    padding: 10px;
+}
+
+.ingredientCheckbox{
+    position: relative;
+    right: 5px;
+    height: 15px;
+    width: 15px;
+
+}
+
+.ingredientCheckbox input:checked{
+    background-color: grey;
+
+}
+
+.alternativeButton{
+    /* float: right; */
+    margin: 5px 10px;
+    background-color: transparent;
+    border: solid 1px grey;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.replaceButton{
+    margin: 0px 10px;
+    background-color: transparent;
+    border: solid 1px grey;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.modalHeader{
+    margin: 10px;
+    font-family: inherit;
+}
+
+.completed{
+    color: gray;
+    text-decoration: line-through;
+}
+
+.uncompleted{
+    color: inherit;
+    text-decoration: none;
+}

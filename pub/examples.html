@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Example use of ReciTwist Library</title>
+    <link rel="stylesheet" href="recitwist.css"> 
+    <link rel="stylesheet" href="examples.css"> 
+    <link rel="stylesheet" href="styles.css"> 
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <script defer type="text/javascript" src='recitwist.js'></script>
+    <script defer type="text/javascript" src='examples.js'></script>
+    
+</head>
+<body>
+    <div id="header">
+        <div class="left">
+            <span class="headerTitle"><h1>ReciTwist.js</h1></span>
+
+        </div>
+        <div class="right">
+            <button onclick="location.href = 'https\://recitwist-library.herokuapp.com';"  class="headerButton" >Home</button>
+            <button onclick="location.href = 'https\://recitwist-library.herokuapp.com/documentation.html';"  class="headerButton" >Documentation</button>
+            <button onclick="location.href = 'https\://recitwist-library.herokuapp.com/examples.html';"  class="headerButton" >Examples</button>
+        </div>        
+    </div>
+    <a href="https://recitwist-library.herokuapp.com/examples.js"><button onclick="location.href = 'https\://recitwist-library.herokuapp.com/examples.js';"  class="codeButton" >View Code File</button></a>
+    <div id="recipe1">
+        <div class="note">
+            <p>Here is an example of the original use of this library; Recipes. Here you can swap ingredients in the ingredients list and track your progress of each step of the recipe through the timeline. </p>
+        </div>
+        <h1>Salt and Sugar Pork Rib Chops</h1>
+        <h5>Recipe found from Carla Lalli Music in her book <i>That Sounds So Good</i></h5>
+        <p>A little bit of sugar mixed into the salt helps these chops brown during their relatively short cook time, and while they rest, make the wilted greens in the pork drippings. </p>
+        <div class="note">
+            <p>TIP: Hover over the "View Alternatives" button to view a modal of the alternative ingredients</p>
+        </div>
+        <div class="IngredientsList"></div>
+        <div class="codeblockExample">
+        <pre><code>// create an ingredients list and add each ingredient
+const ingredientsList = new IngredientList(".IngredientsList", "Ingredients");
+
+ingredientsList.addIngredient("2 teaspoons Kosher salt")
+ingredientsList.addIngredient("1 teaspoon Sugar ")
+ingredientsList.addIngredient("1 pound (1-inch-thick) Bone-in pork rib chops", 
+                                ["Pork shoulder steak", 
+                                "Boneless, skinless chicken thighs", 
+                                "Skirt or flank steak cut into 4-inch sections"])
+ingredientsList.addIngredient("1 head Treviso or other radicchio (12 to 14 ounces)", 
+                                ["Escarole", 
+                                "Napa Cabbage", 
+                                "Savoy Cabbage"])
+ingredientsList.addIngredient("1 Small yellow onion", ["Any onion will do, as long as it's a small one"])
+ingredientsList.addIngredient("1 Lemon ")
+ingredientsList.addIngredient("4 tablespoons Grapeseed or other neutral oil, divided, plus more if needed")
+ingredientsList.addIngredient("Honey, for drizzling")
+ingredientsList.addIngredient("Flaky salt, for serving", ["Kosher salt"])
+ingredientsList.addIngredient("Dijon mustard, for serving", ["Prepared Horseraddish"])</code></pre>
+        </div>
+        
+        <div class="note">
+            <p>TIP: Hover a block in the timeline to view more details about that step. If you click on it, it will bring you to that step directly!  </p>
+        </div>
+        <div class="timeline"></div>
+        <div class="note">
+            <p>TIP: If you click on a recipe step, it will cross out. Notice that it will also change the colour of the corresponding block in the timeline!</p>
+        </div>
+        <div class="recipeInstructions"></div>
+        <div class="codeblockExample"><pre><code>// create an instructions list and add each step
+const instructions = new Instructions(".recipeInstructions", 
+    {title: "Recipe Instructions", crossout: true})
+
+instructions.addStep({title: "Season meat", seperator: ": ",
+        description: "Mix kosher salt and sugar in a small bowl. Lightly pound the pork chops with a meat mallet, rolling pin, or the heel of your hand until they're about 1 inch thick. Pat dry, then season all over with the salt-sugar mixture. Let chops sit while you prep the radicchio and onion. ", 
+    estimatedTime:3})
+instructions.addStep({title: "Prep veggie", seperator: ": ", 
+    description: "Trim the Treviso and separate it into individual leaves. Cut the leaves into irregular 3- to 4-inch pieces. Thinly slice the onion crosswise, then separate into rings. Cut the lemon in half. ", 
+    estimatedTime:4})
+instructions.addStep({description: "Heat a large cast-iron skillet over medium-high for 2 minutes. Pour in 3 tablespoons of oil (this should be enough to thoroughly coat the surface, but add more if needed), then carefully slip the pork chops into the pan. ", 
+    estimatedTime:2})
+instructions.addStep({title: "Cook meat", seperator: ": ",
+    description: "Press down to ensure that the center of each chop is making good contact with the hot oil and the pan. Cook, turning every minute, until the chops are very well browned with some charred spots on the fattiest areas, 5 to 6 minutes total. They will still be a little pink—if you like yours well-done, add another 1 or 2 minutes of cooking time. Transfer to a large plate to rest.", 
+    estimatedTime:6})
+instructions.addStep({title: "Cook onions", seperator: ": ",
+    description: "Carefully pour off fat from the skillet and wipe out any burned bits. Return the pan to medium heat and add remaining 1 tablespoon oil. Add the onion and season with kosher salt. Cook, stirring occasionally, until onion rings are Happy and lightly browned, about 4 minutes. ", 
+    estimatedTime:4})
+instructions.addStep({title: "Cook veggies", seperator: ": ",
+    description: "Add the radicchio, tossing and letting the leaves wilt before adding more, until all the radicchio is in the skillet. Season with kosher salt and cook, tossing, just until the leaves are wilted and tender but the thickest port of the rib still has o little bite to it, 3 to 4 minutes", 
+    estimatedTime:4})
+instructions.addStep({title: "Plate and serve", seperator: ": ",
+    description: "Squeeze in juice of one lemon half, then toss to combine; transfer the radicchio to a platter. Drizzle a little honey over radicchio. Slice chops against the groin and add to platter; drizzle with any accumulated juices. Season with flaky salt. Serve with remaining lemon half and some Dijon for dragging the pork through. ", 
+    estimatedTime:2})</code></pre></div>
+    <div class="codeblockExample"><pre><code>// NOTE: Add the timeline AFTER all of the steps have been added
+instructions.addTimeline(".timeline", {width: "900px", height:"30px"})</code></pre></div>
+    </div>
+    
+
+    <hr>
+    <h1>Relay Race Participants</h1>
+    <h5>Information used from <a href="https://www.liveabout.com/olympic-sprint-and-relay-rules-3259128">LiveAbout.com</a></h5>
+    <div class="note">
+        <p>Here is a fun example of the ingredients list functionality. This is an interactive way to model how relay racers will pass a baton between team mates. This highlights the swapping functionality of the ingredients list.  </p>
+    </div>
+    <p>
+        The rules for the three Olympic individual sprint events (100, 200 and 400 meters) have only slight differences. The relay races (4 x 100 and 4 x 400 meters) have additional rules regarding baton passing. The rules for each event are the same for both men and women. 
+    </p>
+    <h3>Equipment</h3>
+    <p>
+        The relay baton is a smooth, hollow, one-piece tube made of wood, metal or another rigid material. It measures between 28 and 30 centimeters long and between 12 and 13 centimeters in circumference. The baton must weigh at least 50 grams. 
+    </p>
+    <h2>Rules</h2> 
+    <ol class="Instructions">
+        <li>
+            The baton can only be passed within the exchange zone, which is 20 meters long. Exchanges made outside the zone—based on the position of the baton, not the runners’ feet—result in disqualification. Passers must remain in their lanes after the pass to avoid blocking other runners. 
+        </li>
+        <li>
+            The baton must be carried by hand. If it is dropped, the runner can leave the lane to retrieve the baton as long as the recovery doesn’t lessen his or her total running distance. Runners may not wear gloves or place substances on their hands to obtain a better grip on the baton. 
+        </li>
+        <li>
+            Any athlete entered in the Olympics may compete on a country's relay team. However, once a relay team begins competition, only two additional athletes may be used as substitutes in later heats or the final. For practical purposes, then, a relay team includes a maximum of six runners—the four who run in the first heat and a maximum of two substitutes. 
+        </li>
+        
+
+    </ol>
+
+    <div class="RelayRace"></div>
+    <div class="codeblockExample">
+<pre><code>const relayRace = new IngredientList(".RelayRace", "Participants");
+relayRace.changeViewAlternativesButtonText("View team members")
+relayRace.changeHideAlternativesButtonText("Hide team members")
+relayRace.changeSwapButtonText("Pass baton")
+relayRace.changeModalSwapText("First Runner:")
+
+relayRace.addIngredient("Ria Frost", ["Jodi Warren", "Shane Powers", "Lidia Raymond", "Cruz O'Doherty", "Saima Dougherty"])
+relayRace.addIngredient("Kim Brookes", ["Prisha Wolfe", "Kingston Forster", "Beverley Moran",  "Veronika Enriquez", "Finnian Gordon"])
+relayRace.addIngredient("Lacie Phelps", ["Isaak Vincent", "Tayyab Mckinney", "Myra Bond",  "Cheyanne Parrish", "Mahdi Fountain"])
+relayRace.addIngredient("Kiri Huerta", ["Trey Mills", "Lisa May", "Zidan Rahman",  "Luisa Rodriguez", "Yannis Mclean"])</code></pre></div>
+    <h3>The Race </h3>
+    <p>
+        The 100-meter race is run on a straightaway and all runners must remain in their lanes. As in all races, the event ends when a runner’s torso (not the head, arms, or legs) crosses the finish line. <br>
+
+        In the 200- and 400-meter runs, plus the 4 x 100 relay, competitors must again remain in their lanes, but the starting line is staggered to account for the curvature of the track.<br>
+        
+        In the 4 x 400 relay, only the first runner remains in the same lane for the full lap. After receiving the baton, the second runner may leave his/her lane after the first turn. The third and fourth runners are assigned lanes based on the position of the team’s previous runner when he or she is halfway around the track. 
+    </p>
+
+<!-- TODO LIST to include the timeline + instructions -->
+    <hr>
+    <h1>Eryka's TODO list</h1>
+    <div class="note">
+        <p>Here is an example that applies the instructions functionality to a todo list. This is a customizable way to keep track of what work has been done and what still needs to completed.  </p>
+    </div>
+    <div class="todoTimeline"></div>
+    <div class="todoList"></div>
+    <div class="codeblockExample"><pre><code>const todo = new Instructions(".todoList", 
+    {title: "Eryka's Daily routine", crossout: true,
+    description:"Things for me to do today!", stepName:"Item"},)
+
+todo.addStep({title: "Complete CSC384 Assignment", seperator: "- ",
+        description: "Debug CSC384 Assignment. Estimated time: 2h", 
+    estimatedTime:2})
+todo.addStep({title: "Start SOC207 Essay", seperator: "- ",
+    description: "Create SOC207 essay outline. Estimated time: 1h", 
+    estimatedTime:1})
+todo.addStep({title: "Laundry", seperator: "- ",
+    description: "Do your laundry!!! Estimated time: 0.5h", 
+    estimatedTime:0.5})
+todo.addStep({title: "See friend :)", seperator: "- ",
+    description: "Go to Cat's Eye to see Grace. Estimated time: 3h", 
+    estimatedTime:3})</code></pre></div>
+
+    <div class="codeblockExample"><pre><code>todo.addTimeline(".todoTimeline", 
+    {width: "900px", height: "50px", 
+    inprogressColour: "#fcba03", completedColour:"#ff6ef0", bgColour: "#ffffff"})</code></pre></div>
+
+
+</body>
+</html>
